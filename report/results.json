@@ -1,0 +1,103 @@
+{
+  "matcher": {
+    "rows": [
+      {
+        "job": "GenAI Engineer",
+        "requirement": "Strong Python",
+        "truth": true,
+        "naive": false,
+        "hybrid": true
+      },
+      {
+        "job": "GenAI Engineer",
+        "requirement": "LangChain or LangGraph",
+        "truth": true,
+        "naive": false,
+        "hybrid": true
+      },
+      {
+        "job": "GenAI Engineer",
+        "requirement": "Retrieval-augmented generation (RAG) and vector databases",
+        "truth": true,
+        "naive": false,
+        "hybrid": true
+      },
+      {
+        "job": "GenAI Engineer",
+        "requirement": "FastAPI or a similar Python web framework",
+        "truth": true,
+        "naive": false,
+        "hybrid": true
+      },
+      {
+        "job": "GenAI Engineer",
+        "requirement": "Docker",
+        "truth": true,
+        "naive": true,
+        "hybrid": true
+      },
+      {
+        "job": "GenAI Engineer",
+        "requirement": "Kubernetes",
+        "truth": false,
+        "naive": false,
+        "hybrid": false
+      },
+      {
+        "job": "GenAI Engineer",
+        "requirement": "Experience evaluating LLM outputs (LLM evaluation)",
+        "truth": false,
+        "naive": false,
+        "hybrid": false
+      },
+      {
+        "job": "Senior Data Scientist",
+        "requirement": "Python, pandas, scikit-learn",
+        "truth": true,
+        "naive": false,
+        "hybrid": true
+      },
+      {
+        "job": "Senior Data Scientist",
+        "requirement": "Deep learning with PyTorch or TensorFlow",
+        "truth": false,
+        "naive": false,
+        "hybrid": false
+      },
+      {
+        "job": "Senior Data Scientist",
+        "requirement": "Statistics and A/B testing",
+        "truth": false,
+        "naive": false,
+        "hybrid": false
+      },
+      {
+        "job": "Senior Data Scientist",
+        "requirement": "Spark or other big-data tooling",
+        "truth": false,
+        "naive": false,
+        "hybrid": false
+      },
+      {
+        "job": "Senior Data Scientist",
+        "requirement": "SQL",
+        "truth": true,
+        "naive": true,
+        "hybrid": true
+      }
+    ],
+    "naive_accuracy": 0.5833333333333334,
+    "hybrid_accuracy": 1.0
+  },
+  "checks": {
+    "pdf_upload": true,
+    "ollama_down_detected": true,
+    "guardrail_catches_fake_metric": true,
+    "guardrail_passes_real_metric": true,
+    "empty_input_blocks_run": true,
+    "short_input_warns": true,
+    "ollama_down_shows_error": true,
+    "pytest_summary": "20 passed in 0.83s"
+  },
+  "model": "llama3.2"
+}

@@ -58,7 +58,7 @@ FAMILIES = {
 
 # Broad disciplines are not checkable skills; the experience judgement covers them.
 GENERIC = {"software engineering", "software development", "programming", "coding", "computer science",
-           "engineering", "problem solving", "development"}
+           "engineering", "problem solving", "development", "data science"}
 
 # Words that carry no meaning when comparing skills ("experience with Docker" == "Docker").
 FILLER = {"experience", "with", "in", "of", "and", "knowledge", "proficiency", "strong", "familiarity", "using", "skills"}

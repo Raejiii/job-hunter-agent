@@ -1,0 +1,852 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Job Hunter Project Report</title>
+<style>
+  @page { size: A4; margin: 26mm 22mm 24mm 25mm; }
+  :root { --ink: #111; --muted: #555; --accent: #1f3a93; --line: #c9ced8; --soft: #f3f5f9; }
+  html { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  body { font-family: "Times New Roman", Times, serif; font-size: 12pt; line-height: 1.5; color: var(--ink); margin: 0; }
+  .page { page-break-after: always; break-after: page; }
+  .page:last-child { page-break-after: auto; }
+  h1.chapter-no { text-align: center; font-size: 15pt; margin: 0 0 2pt; font-weight: bold; }
+  h1.chapter { text-align: center; font-size: 17pt; margin: 0 0 18pt; font-weight: bold; }
+  h2 { font-size: 13.5pt; margin: 16pt 0 6pt; break-after: avoid; }
+  h3 { font-size: 12.5pt; margin: 12pt 0 4pt; break-after: avoid; }
+  p { text-align: justify; margin: 0 0 9pt; }
+  ul, ol { margin: 0 0 9pt; padding-left: 22pt; }
+  li { text-align: justify; margin-bottom: 3pt; }
+  table { border-collapse: collapse; width: 100%; margin: 6pt 0 12pt; font-size: 10.5pt; line-height: 1.35; break-inside: auto; }
+  th, td { border: 1px solid #888; padding: 4pt 6pt; vertical-align: top; text-align: left; }
+  th { background: #e6e9f0; }
+  tr { break-inside: avoid; }
+  pre { font-family: Menlo, Consolas, "Courier New", monospace; font-size: 8.6pt; line-height: 1.38; background: var(--soft);
+        border: 1px solid var(--line); border-left: 3px solid var(--accent); padding: 7pt 9pt; margin: 4pt 0 12pt;
+        white-space: pre-wrap; break-inside: avoid; }
+  code { font-family: Menlo, Consolas, monospace; font-size: 9.5pt; background: var(--soft); padding: 0 2pt; }
+  figure { margin: 8pt 0 14pt; text-align: center; break-inside: avoid; }
+  figure img { max-width: 100%; border: 1px solid var(--line); }
+  figure img.tall { max-height: 175mm; width: auto; }
+  figcaption { font-size: 10.5pt; font-style: italic; margin-top: 4pt; color: #333; }
+  .center { text-align: center; }
+  .formula { text-align: center; font-style: italic; margin: 8pt 0 12pt; }
+  .pass { color: #13703a; font-weight: bold; }
+  .note { font-size: 10.5pt; color: var(--muted); }
+
+  /* Cover */
+  .cover { text-align: center; line-height: 1.35; }
+  .cover .college { font-size: 16pt; font-weight: bold; margin-top: 4pt; }
+  .cover .sub { font-size: 9.5pt; }
+  .cover .logo { margin: 18pt auto 14pt; width: 92px; height: 92px; border-radius: 50%; border: 3px solid var(--accent);
+                 display: flex; align-items: center; justify-content: center; font: bold 22pt "Times New Roman"; color: var(--accent); }
+  .cover .kind { font-size: 13pt; margin-top: 10pt; }
+  .cover .title { font-size: 18pt; font-weight: bold; margin: 12pt 30pt 14pt; color: var(--accent); }
+  .cover .degree { font-size: 12.5pt; margin: 12pt 0; }
+  .cover .who { font-size: 14pt; font-weight: bold; margin: 4pt 0 0; }
+  .cover .dept { margin-top: 22pt; font-weight: bold; }
+
+  /* TOC */
+  .toc { width: 100%; border: 0; font-size: 12pt; }
+  .toc td { border: 0; padding: 1.5pt 0; }
+  .toc td.n { text-align: right; width: 34pt; }
+  .toc tr.ch td { font-weight: bold; padding-top: 7pt; }
+  .toc tr.sub td:first-child { padding-left: 22pt; }
+  .toc tr.subsub td:first-child { padding-left: 44pt; }
+  .dots { display: flex; }
+  .dots span:first-child { white-space: nowrap; }
+  .dots::after { content: ""; flex: 1; border-bottom: 1px dotted #777; margin: 0 4pt 5pt; }
+
+  svg text { font-family: Helvetica, Arial, sans-serif; }
+</style>
+</head>
+<body>
+
+<!-- ======================================================== FRONT MATTER ===== -->
+<div id="front">
+
+<section class="page cover">
+  <div class="college">DAYANANDA SAGAR COLLEGE OF ENGINEERING</div>
+  <div class="sub">(An Autonomous Institute affiliated to VTU, Belagavi, Approved by AICTE &amp; ISO 9001:2008 Certified)<br>
+  (Accredited by NBA, National Assessment &amp; Accreditation Council (NAAC) with ‘A’ grade)<br>
+  Shavige Malleshwara Hills, Kumaraswamy Layout, Bengaluru-560078.</div>
+  <div class="logo">DSCE</div>
+  <div class="kind">A Project Report of Generative AI<br>AAT-1<br>on</div>
+  <div class="title">“Job Hunter: A Multi-Agent Career Copilot Using LangChain, LangGraph and Ollama”</div>
+  <div class="degree">Submitted in partial fulfillment for the award of degree of<br><br>
+    <b>MASTER OF TECHNOLOGY<br>IN<br>COMPUTER SCIENCE &amp; ENGINEERING</b></div>
+  <div>Submitted By</div>
+  <div class="who">RAHUL JOY SUNEEL</div>
+  <div><b>1DS25SCS10</b></div>
+  <div style="margin-top:16pt">Under the guidance of</div>
+  <div class="who" style="font-size:12.5pt">Dr. Anusha Preetham</div>
+  <div>Associate Professor<br>Dept. of CSE, DSCE</div>
+  <div class="dept">Department of Computer Science &amp; Engineering,<br>Dayananda Sagar College of Engineering,<br>
+    Shavige Malleshwara Hills, Kumaraswamy Layout,<br>Bengaluru-560078<br>2026 - 2027</div>
+</section>
+
+<section class="page">
+  <h1 class="chapter" style="margin-top:20pt">Acknowledgement</h1>
+  <p>I am pleased to have successfully completed the project <b>Job Hunter: A Multi-Agent Career Copilot Using LangChain,
+  LangGraph and Ollama</b>. Working on this project gave me hands-on experience in designing agentic generative AI systems,
+  and I learned a great deal about making language-model applications reliable.</p>
+  <p>I would like to take this opportunity to express my gratitude to Dr. B G Prasad, Principal of DSCE, for permitting us to
+  utilize all the necessary facilities of the institution.</p>
+  <p>I also thank our respected Vice Principal and HOD of Computer Science &amp; Engineering, DSCE, Bangalore,
+  Dr. Ramesh Babu D R, for his support and encouragement throughout the process.</p>
+  <p>I am immensely grateful to my respected and learned guide, Dr. Anusha Preetham, Associate Professor, Dept. of CSE, DSCE,
+  for her valuable help and guidance.</p>
+  <p>I also thank all the faculty and support staff of the Department of Computer Science, DSCE. Without their support over the
+  years, this work would not have been possible.</p>
+  <p style="text-align:right; margin-top:40pt"><b>Rahul Joy Suneel</b><br>1DS25SCS10</p>
+</section>
+
+<section class="page">
+  <h1 class="chapter" style="margin-top:20pt">Abstract</h1>
+  <p>Job seekers routinely tailor their applications to every posting: they compare their resume against the
+  requirements, work out which skills they are missing, prepare for likely interview questions and write a cover letter. Existing
+  tools either match keywords mechanically, as Applicant Tracking Systems do, or rely on a single chatbot prompt whose output is
+  generic and prone to hallucination. This project presents <b>Job Hunter</b>, a multi-agent career copilot built with
+  <b>LangChain</b> and <b>LangGraph</b> that runs entirely on a local Large Language Model (Llama 3.2, 3B parameters) served
+  by <b>Ollama</b>.</p>
+  <p>Seven specialised agents cooperate through a LangGraph state graph. These are a Resume Parser, Job Analyst, Match Scorer,
+  Gap Coach, Interview Coach, Cover Letter Writer and Letter Critic. Independent agents run in parallel, and the writer and
+  critic form a feedback loop that revises the cover letter until it passes a rubric or reaches a revision limit. Every agent
+  produces typed output validated against Pydantic schemas. To make a small local model dependable, the system combines LLM
+  reasoning with deterministic components: a skill matcher that understands aliases, skill families, alternatives and compound
+  requirements; a hybrid fit score in which the LLM contributes only 30%; a rubric-based critic whose score is computed in code;
+  and a hallucination guardrail that rejects any figure, placeholder or skill claim in the letter that cannot be traced to the
+  resume.</p>
+  <p>The application provides a Streamlit interface with a live view of the agent pipeline. On the sample data, the hybrid
+  matcher classified 12 of 12 hand-labelled requirements correctly, against 7 of 12 for naive keyword matching. The guardrail
+  caught invented metrics and placeholder employers that the language model produced. All 20 automated tests and every
+  system test case passed. A complete analysis takes about two to three minutes on an 8 GB Apple M1 laptop, with no data
+  leaving the machine.</p>
+</section>
+
+<section class="page" id="toc-page">
+  <h1 class="chapter" style="margin-top:10pt">Table of Contents</h1>
+  <!--TOC-->
+</section>
+
+</div>
+
+<!-- ============================================================== BODY ======= -->
+<div id="body">
+
+<!-- ======================= CHAPTER 1 -->
+<section class="page">
+  <h1 class="chapter-no">Chapter 1</h1>
+  <h1 class="chapter" data-toc="1. Introduction">Introduction</h1>
+
+  <h2 data-toc="1.1 The Problem">1.1 The Problem</h2>
+  <p>Applying for a job well takes considerable effort. For each posting, a candidate must read the description, identify
+  the must-have and nice-to-have skills, compare them honestly with their own experience, decide whether the role is worth
+  applying for, prepare for the interview and write a cover letter that is specific to the company. Doing this for dozens of
+  applications is tiring, so candidates often send generic applications, which recruiters tend to ignore.</p>
+  <p>Generative AI can help, but a single prompt to a chatbot (“here is my resume and a job description, write a cover letter”)
+  has well-known weaknesses. The output is generic. The model may claim skills the candidate does not have, or invent
+  impressive-sounding numbers. And there is no structured analysis of <i>why</i> the candidate fits or does not fit. Cloud
+  chatbots also require the user to upload a resume, a document full of personal information, to a third-party service.</p>
+  <p>This project addresses these problems by decomposing the task into a team of specialised AI agents, orchestrated with
+  LangGraph, running on a local language model through Ollama, and backed by deterministic checks wherever correctness
+  matters.</p>
+
+  <h2 data-toc="1.2 Objectives">1.2 Objectives</h2>
+  <p>The main objective is to build a reliable, privacy-preserving multi-agent application that analyses a candidate’s fit for a
+  job and produces actionable, honest application material. The specific objectives are:</p>
+  <ol>
+    <li>To design a multi-agent workflow in LangGraph with parallel execution and a self-correcting feedback loop.</li>
+    <li>To use LangChain prompt templates and structured output (Pydantic schemas) so that every agent returns validated, typed data.</li>
+    <li>To run the Llama 3.2 language model locally through Ollama so that resumes never leave the user’s machine.</li>
+    <li>To compute an explainable fit score that combines deterministic skill matching with the LLM’s qualitative judgement.</li>
+    <li>To generate a personalised learning plan for missing skills and a set of likely interview questions.</li>
+    <li>To generate a tailored cover letter and automatically detect and correct hallucinated claims.</li>
+    <li>To build an interactive Streamlit interface that shows the agents working in real time.</li>
+    <li>To verify the system with automated unit tests, system test cases and a quantitative comparison against a baseline.</li>
+  </ol>
+
+  <h2 data-toc="1.3 Real-World Applications">1.3 Real-World Applications</h2>
+  <ol>
+    <li><b>Job seekers and students:</b> quickly judge whether a role is a realistic target and tailor each application.</li>
+    <li><b>College placement cells:</b> help students prepare for campus drives by highlighting gaps against each company’s requirements.</li>
+    <li><b>Career coaches and mentors:</b> produce a structured starting point (fit report, gaps, interview questions) for coaching sessions.</li>
+    <li><b>Upskilling platforms:</b> recommend targeted mini-projects based on the skills a learner is missing for a target role.</li>
+    <li><b>Recruiters:</b> the same pipeline, run in reverse, can pre-screen candidates with an explainable score instead of opaque keyword filters.</li>
+    <li><b>Privacy-sensitive settings:</b> because inference is local, the approach suits organisations that cannot send personal data to cloud AI services.</li>
+  </ol>
+
+  <h2 data-toc="1.4 Organization of the Project Report">1.4 Organization of the Project Report</h2>
+  <p>This report is organised into seven chapters. <b>Chapter 1</b> introduces the problem, objectives and applications.
+  <b>Chapter 2</b> presents the problem statement, existing systems, the proposed solution, its advantages and the system
+  requirements. <b>Chapter 3</b> reviews the technologies used: generative AI, large language models, LangChain, LangGraph,
+  multi-agent systems, Ollama, Llama 3.2, structured output, Streamlit and Python. <b>Chapter 4</b> describes the
+  architecture, the agent workflow, each module, the data flow, the scoring algorithm and the guardrails. <b>Chapter 5</b>
+  covers the implementation, key source code and the execution procedure. <b>Chapter 6</b> presents testing, test cases, results
+  with screenshots, and limitations. <b>Chapter 7</b> concludes the report and outlines future enhancements.</p>
+</section>
+
+<!-- ======================= CHAPTER 2 -->
+<section class="page">
+  <h1 class="chapter-no">Chapter 2</h1>
+  <h1 class="chapter" data-toc="2. Problem Statement and Proposed Solution">Problem Statement and Proposed Solution</h1>
+
+  <h2 data-toc="2.1 Problem Statement">2.1 Problem Statement</h2>
+  <p>Given a candidate’s resume and a job description, the system must (i) extract structured information from both
+  documents, (ii) determine which required and preferred skills the candidate has, (iii) produce an explainable fit score,
+  (iv) recommend concrete steps to close skill gaps, (v) predict likely interview questions, and (vi) write a tailored cover
+  letter that contains <i>only</i> facts supported by the resume. The system must run on a typical student laptop without paid
+  APIs, keep personal data local, and remain reliable even though small local language models are prone to formatting errors,
+  inconsistency and hallucination.</p>
+
+  <h2 data-toc="2.2 Existing Systems">2.2 Existing Systems</h2>
+  <h3 data-toc="2.2.1 Applicant Tracking Systems and Keyword Matchers" data-level="3">2.2.1 Applicant Tracking Systems and Keyword Matchers</h3>
+  <p>Many job portals and Applicant Tracking Systems (ATS) score resumes by matching keywords from the job description.</p>
+  <p><b>Limitations:</b></p>
+  <ul>
+    <li>Exact keyword matching misses synonyms and related skills (e.g. “k8s” vs. “Kubernetes”, or FAISS as a vector database).</li>
+    <li>Compound requirements (“RAG and vector databases”) and alternatives (“LangChain or LangGraph”) are handled poorly.</li>
+    <li>They give a score but no explanation, learning guidance or application material.</li>
+  </ul>
+  <h3 data-toc="2.2.2 Single-Prompt AI Chatbots" data-level="3">2.2.2 Single-Prompt AI Chatbots</h3>
+  <p>General-purpose chatbots can write cover letters and give career advice from a single prompt.</p>
+  <p><b>Limitations:</b></p>
+  <ul>
+    <li>Output is often generic and not grounded in the candidate’s actual achievements.</li>
+    <li>The model may invent metrics, employers or skills (hallucination), and nothing checks this.</li>
+    <li>No structured, reproducible analysis: asking twice may give two different verdicts.</li>
+    <li>Resumes containing personal data are sent to an external cloud service.</li>
+  </ul>
+  <h3 data-toc="2.2.3 Resume Builders and Templates" data-level="3">2.2.3 Resume Builders and Templates</h3>
+  <p>Template-based tools help format resumes and letters but do not analyse a specific job posting.</p>
+  <p><b>Limitations:</b></p>
+  <ul>
+    <li>They do not reason about fit, gaps or interview preparation.</li>
+    <li>Personalisation depends entirely on the user’s own effort.</li>
+  </ul>
+
+  <h2 data-toc="2.3 Proposed Solution">2.3 Proposed Solution</h2>
+  <p>The proposed system, <b>Job Hunter</b>, is a multi-agent application in which each agent has one clearly defined
+  responsibility. Agents communicate through a shared, typed state managed by a LangGraph <code>StateGraph</code>:</p>
+  <ol>
+    <li><b>Resume Parser:</b> converts the resume into a structured <code>CandidateProfile</code> (skills, experience, quantified achievements).</li>
+    <li><b>Job Analyst:</b> converts the posting into <code>JobRequirements</code>, separating must-have from nice-to-have skills.</li>
+    <li><b>Match Scorer:</b> runs a deterministic skill matcher and asks the LLM for a qualitative judgement, then combines both into a hybrid score.</li>
+    <li><b>Gap Coach:</b> turns each missing skill into a short, concrete portfolio mini-project.</li>
+    <li><b>Interview Coach:</b> predicts six likely questions, including “gap-probe” questions aimed at weak areas.</li>
+    <li><b>Cover Letter Writer:</b> drafts a tailored letter using only real achievements.</li>
+    <li><b>Letter Critic:</b> reviews the letter with a five-point rubric plus code-based checks, and sends it back for revision if needed.</li>
+  </ol>
+  <p>The Resume Parser and Job Analyst run in parallel, as do the Gap Coach, Interview Coach and Cover Letter Writer. The
+  writer and critic form a loop that ends when the letter passes or the revision limit is reached, after which the
+  best-scoring draft is selected. A Streamlit web interface shows each agent’s status live and presents the results in tabs.</p>
+
+  <h2 data-toc="2.4 Advantages of the Proposed System">2.4 Advantages of the Proposed System</h2>
+  <ol>
+    <li><b>Privacy:</b> the model runs locally through Ollama, so the resume never leaves the computer.</li>
+    <li><b>No paid API:</b> the system uses a free, open-weight model.</li>
+    <li><b>Explainable scoring:</b> the score is broken down into must-have coverage, nice-to-have coverage and experience fit.</li>
+    <li><b>Hallucination resistance:</b> a deterministic guardrail rejects unsupported figures, placeholder names and false skill claims.</li>
+    <li><b>Self-correction:</b> the critic–writer loop revises weak letters automatically, and the best draft is kept.</li>
+    <li><b>Robust to small-model errors:</b> structured output, output-length caps, timeouts and fallbacks keep the pipeline running.</li>
+    <li><b>Actionable output:</b> a learning plan and interview preparation, not just a score.</li>
+    <li><b>Modular and testable:</b> each agent is a separate function; the full graph is tested with a scripted fake model.</li>
+  </ol>
+  <p class="note">Generated content can still be imperfect. Users should review the cover letter and advice before using them.</p>
+
+  <h2 data-toc="2.5 System Requirements">2.5 System Requirements</h2>
+  <h3 data-toc="2.5.1 Hardware Requirements" data-level="3">2.5.1 Hardware Requirements</h3>
+  <ul>
+    <li>Laptop or desktop computer (developed and tested on an Apple M1 with 8 GB RAM).</li>
+    <li>Minimum 8 GB RAM; 16 GB recommended for larger models such as Llama 3.1 8B.</li>
+    <li>About 3 GB free storage for the model and Python packages.</li>
+    <li>A GPU or Apple Silicon is recommended for faster inference but not required.</li>
+  </ul>
+  <h3 data-toc="2.5.2 Software Requirements" data-level="3">2.5.2 Software Requirements</h3>
+  <table>
+    <tr><th style="width:32%">Software</th><th>Purpose</th></tr>
+    <tr><td>Python 3.11</td><td>Main programming language</td></tr>
+    <tr><td>LangChain 1.4 (langchain-core 1.6)</td><td>Prompt templates, LCEL chains, structured output, fallbacks</td></tr>
+    <tr><td>LangGraph 1.2</td><td>Multi-agent state graph with parallel branches and conditional loops</td></tr>
+    <tr><td>langchain-ollama 1.1</td><td>Connects LangChain to Ollama (<code>ChatOllama</code>)</td></tr>
+    <tr><td>Ollama 0.40 + Llama 3.2 (3B)</td><td>Runs the language model locally</td></tr>
+    <tr><td>Pydantic 2</td><td>Schemas for validated structured output</td></tr>
+    <tr><td>Streamlit 1.65, Plotly</td><td>Web interface and fit-score gauge</td></tr>
+    <tr><td>pypdf</td><td>Extracting text from PDF resumes</td></tr>
+    <tr><td>pytest, Playwright</td><td>Automated tests and report screenshots</td></tr>
+    <tr><td>VS Code / any editor, Git, web browser</td><td>Development, version control and accessing the app</td></tr>
+  </table>
+</section>
+
+<!-- ======================= CHAPTER 3 -->
+<section class="page">
+  <h1 class="chapter-no">Chapter 3</h1>
+  <h1 class="chapter" data-toc="3. Related Work and Technology Review">Related Work and Technology Review</h1>
+
+  <h2 data-toc="3.1 Introduction">3.1 Introduction</h2>
+  <p>Conversational AI has evolved from rule-based programs to large language models that can follow instructions, reason
+  over text and call tools. A newer trend is <i>agentic</i> AI. Here, instead of one model answering in one step, several
+  LLM-powered components each take a role, share state and iterate. This chapter reviews the technologies this project builds
+  on and explains how each is used.</p>
+
+  <h2 data-toc="3.2 Generative Artificial Intelligence">3.2 Generative Artificial Intelligence</h2>
+  <p>Generative AI refers to models that produce new content (text, images, audio or code) based on patterns learned during
+  training. Text generators take a prompt and produce a continuation. In this project, generative AI is used in two ways: to
+  <i>extract</i> structured information from unstructured documents (resumes and job posts) and to <i>generate</i> new text
+  (learning plans, interview questions and cover letters). Generative models can produce fluent but false statements, which is
+  why this project pairs generation with verification.</p>
+
+  <h2 data-toc="3.3 Large Language Models">3.3 Large Language Models</h2>
+  <p>Large Language Models (LLMs) are transformer-based neural networks trained on very large text corpora to predict the next
+  token. Through instruction tuning they learn to follow natural-language instructions. Their behaviour is shaped by the prompt
+  and by decoding settings such as <i>temperature</i>: low temperature gives more deterministic output (used here for extraction
+  and scoring), while higher temperature gives more varied output (used for writing). Smaller models (1–8 billion parameters)
+  can run on laptops but are less reliable at following complex formats. This motivates the structured output, validation and
+  fallback techniques used in this project.</p>
+
+  <h2 data-toc="3.4 LangChain">3.4 LangChain</h2>
+  <p>LangChain is a framework for building applications powered by language models. This project uses several of its core
+  abstractions:</p>
+  <ul>
+    <li><b>ChatPromptTemplate:</b> reusable system and human message templates with variables.</li>
+    <li><b>LangChain Expression Language (LCEL):</b> components are composed with the pipe operator, e.g. <code>prompt | llm | StrOutputParser()</code>.</li>
+    <li><b>Structured output:</b> <code>llm.with_structured_output(PydanticModel)</code> sends a JSON schema to the model and parses the reply into a validated Python object.</li>
+    <li><b>Fallbacks:</b> <code>chain.with_fallbacks([...])</code> automatically retries with an alternative chain if the primary one fails.</li>
+  </ul>
+  <pre>from langchain_ollama import ChatOllama
+from langchain_core.prompts import ChatPromptTemplate
+
+llm = ChatOllama(model="llama3.2", temperature=0)
+prompt = ChatPromptTemplate.from_messages([
+    ("system", "Extract a structured profile from the resume."),
+    ("human", "RESUME:\n{resume_text}"),
+])
+chain = prompt | llm.with_structured_output(CandidateProfile)
+profile = chain.invoke({"resume_text": text})   # -> CandidateProfile object</pre>
+
+  <h2 data-toc="3.5 LangGraph and Multi-Agent Systems">3.5 LangGraph and Multi-Agent Systems</h2>
+  <p>LangGraph is a library from the LangChain ecosystem for building stateful, multi-step agent workflows as graphs. A
+  <code>StateGraph</code> is defined by a typed state, a set of <b>nodes</b> (functions that read the state and return updates)
+  and <b>edges</b> that decide which node runs next. Key features used in this project are:</p>
+  <ul>
+    <li><b>Parallel fan-out and join:</b> several edges leaving a node run their targets concurrently; an edge from a list of nodes waits for all of them.</li>
+    <li><b>Conditional edges:</b> a routing function decides the next node, which enables loops such as critic → writer → critic.</li>
+    <li><b>Reducers:</b> state fields annotated with <code>operator.add</code> accumulate values from parallel branches instead of overwriting them.</li>
+    <li><b>Streaming:</b> <code>graph.stream()</code> emits events as each node starts and finishes, which powers the live UI.</li>
+  </ul>
+  <p>Multi-agent systems split a complex task among specialised agents. Compared with a single prompt, this gives each agent
+  a focused prompt and schema, allows independent steps to run in parallel, and enables patterns such as
+  <i>generator–critic</i> (reflection), where one agent reviews and improves another’s output.</p>
+
+  <h2 data-toc="3.6 Ollama">3.6 Ollama</h2>
+  <p>Ollama is a runtime for running open-weight language models locally. It downloads quantised models, serves them through a
+  local HTTP API (port 11434) and supports JSON-schema-constrained output, which LangChain’s structured output uses. In this
+  project Ollama runs Llama 3.2 on the user’s laptop, so no API key or internet connection is needed after the model is
+  downloaded, and resume data stays on the machine.</p>
+
+  <h2 data-toc="3.7 Llama 3.2">3.7 Llama 3.2</h2>
+  <p>Llama 3.2 is a family of open-weight models released by Meta. The 3-billion-parameter instruction-tuned variant
+  (<code>llama3.2</code> in Ollama, about 2 GB quantised) is used here because it runs comfortably on an 8 GB laptop at about
+  20–25 tokens per second. The model name is configurable, so larger models such as Llama 3.1 8B or Qwen 2.5 can be swapped in
+  without code changes.</p>
+
+  <h2 data-toc="3.8 Structured Output with Pydantic">3.8 Structured Output with Pydantic</h2>
+  <p>Pydantic is a Python data-validation library. Each agent’s output is described by a Pydantic model whose field
+  descriptions double as instructions to the LLM. LangChain converts the model into a JSON schema, Ollama constrains generation
+  to that schema, and Pydantic validates the result. Downstream agents therefore receive typed objects
+  (e.g. <code>profile.skills: list[str]</code>) rather than free text that must be parsed.</p>
+
+  <h2 data-toc="3.9 Streamlit">3.9 Streamlit</h2>
+  <p>Streamlit is a Python framework for building interactive web applications without separate HTML or JavaScript code. The
+  project uses <code>st.file_uploader</code> for PDF resumes, <code>st.text_area</code> for inputs, <code>st.status</code> for
+  the live agent log, <code>st.tabs</code> for results, <code>st.plotly_chart</code> for the score gauge,
+  <code>st.download_button</code> for the cover letter and <code>st.session_state</code> to keep results across reruns.</p>
+
+  <h2 data-toc="3.10 Python">3.10 Python</h2>
+  <p>Python is the implementation language for the whole project: agents, graph, scoring, guardrails, user interface and
+  tests. Its ecosystem (LangChain, LangGraph, Pydantic, Streamlit, pytest) makes it the de facto language for LLM
+  application development.</p>
+</section>
+
+<!-- ======================= CHAPTER 4 -->
+<section class="page">
+  <h1 class="chapter-no">Chapter 4</h1>
+  <h1 class="chapter" data-toc="4. Architecture and System Design">Architecture and System Design</h1>
+
+  <h2 data-toc="4.1 System Architecture">4.1 System Architecture</h2>
+  <p>The system follows a layered architecture (Figure 4.1). The <b>presentation layer</b> is the Streamlit web app (or the
+  command-line runner). The <b>orchestration layer</b> is the LangGraph state graph that schedules the seven agents. The
+  <b>agent layer</b> contains LangChain chains: prompt templates, the chat model and output parsers. The <b>reliability
+  layer</b> contains deterministic Python components: the skill matcher, hybrid scorer and guardrails. The <b>model
+  layer</b> is Ollama serving Llama 3.2 locally.</p>
+  <figure>
+  <svg viewBox="0 0 640 400" width="100%" xmlns="http://www.w3.org/2000/svg">
+    <defs><marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0L10,5L0,10z" fill="#333"/></marker></defs>
+    <rect x="10" y="10" width="620" height="62" rx="8" fill="#e8edf8" stroke="#1f3a93"/>
+    <text x="320" y="32" text-anchor="middle" font-size="13" font-weight="bold">Presentation layer: Streamlit web app / CLI</text>
+    <text x="320" y="54" text-anchor="middle" font-size="11">Resume upload (PDF/TXT) · Job description · Live agent pipeline · Result tabs · Download</text>
+    <line x1="320" y1="72" x2="320" y2="92" stroke="#333" marker-end="url(#a)"/>
+    <rect x="10" y="94" width="620" height="54" rx="8" fill="#eef7ee" stroke="#2e7d32"/>
+    <text x="320" y="116" text-anchor="middle" font-size="13" font-weight="bold">Orchestration layer: LangGraph StateGraph</text>
+    <text x="320" y="136" text-anchor="middle" font-size="11">Shared typed state · parallel fan-out/join · conditional revise loop · streaming events</text>
+    <line x1="200" y1="148" x2="200" y2="168" stroke="#333" marker-end="url(#a)"/>
+    <line x1="500" y1="148" x2="500" y2="168" stroke="#333" marker-end="url(#a)"/>
+    <rect x="10" y="170" width="390" height="124" rx="8" fill="#fff6e5" stroke="#b26a00"/>
+    <text x="205" y="190" text-anchor="middle" font-size="13" font-weight="bold">Agent layer: LangChain chains</text>
+    <g font-size="10.5">
+      <rect x="22" y="200" width="118" height="26" rx="5" fill="#fff" stroke="#b26a00"/><text x="81" y="217" text-anchor="middle">Resume Parser</text>
+      <rect x="146" y="200" width="118" height="26" rx="5" fill="#fff" stroke="#b26a00"/><text x="205" y="217" text-anchor="middle">Job Analyst</text>
+      <rect x="270" y="200" width="118" height="26" rx="5" fill="#fff" stroke="#b26a00"/><text x="329" y="217" text-anchor="middle">Match Scorer</text>
+      <rect x="22" y="232" width="118" height="26" rx="5" fill="#fff" stroke="#b26a00"/><text x="81" y="249" text-anchor="middle">Gap Coach</text>
+      <rect x="146" y="232" width="118" height="26" rx="5" fill="#fff" stroke="#b26a00"/><text x="205" y="249" text-anchor="middle">Interview Coach</text>
+      <rect x="270" y="232" width="118" height="26" rx="5" fill="#fff" stroke="#b26a00"/><text x="329" y="249" text-anchor="middle">Letter Writer</text>
+      <rect x="146" y="264" width="118" height="24" rx="5" fill="#fff" stroke="#b26a00"/><text x="205" y="280" text-anchor="middle">Letter Critic</text>
+    </g>
+    <rect x="410" y="170" width="220" height="124" rx="8" fill="#fdecec" stroke="#b71c1c"/>
+    <text x="520" y="190" text-anchor="middle" font-size="13" font-weight="bold">Reliability layer (Python)</text>
+    <g font-size="10.5">
+      <text x="424" y="214">• Skill matcher (aliases, families)</text>
+      <text x="424" y="234">• Hybrid fit score</text>
+      <text x="424" y="254">• Hallucination guardrail</text>
+      <text x="424" y="274">• Rubric scoring · best draft</text>
+    </g>
+    <line x1="205" y1="294" x2="205" y2="316" stroke="#333" marker-end="url(#a)"/>
+    <text x="215" y="309" font-size="10">prompt + JSON schema</text>
+    <rect x="10" y="318" width="620" height="72" rx="8" fill="#f0eef8" stroke="#5e35b1"/>
+    <text x="320" y="342" text-anchor="middle" font-size="13" font-weight="bold">Model layer: Ollama runtime (localhost:11434)</text>
+    <text x="320" y="362" text-anchor="middle" font-size="11">Llama 3.2 3B (quantised) · schema-constrained JSON output · runs fully offline</text>
+    <text x="320" y="380" text-anchor="middle" font-size="11">Pydantic validates every structured response</text>
+  </svg>
+  <figcaption>Figure 4.1: Layered system architecture of Job Hunter</figcaption>
+  </figure>
+
+  <h2 data-toc="4.2 Agent Workflow (LangGraph)">4.2 Agent Workflow (LangGraph)</h2>
+  <p>Figure 4.2 shows the agent graph. Execution starts with two agents in parallel. The <code>match</code> node waits for
+  both, then fans out to three agents. The writer and critic loop until the letter passes or the revision limit is reached,
+  and then the best draft is selected.</p>
+  <figure>
+  <svg viewBox="0 0 640 330" width="100%" xmlns="http://www.w3.org/2000/svg">
+    <defs><marker id="b" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0L10,5L0,10z" fill="#333"/></marker></defs>
+    <g font-size="11" text-anchor="middle">
+      <circle cx="40" cy="120" r="24" fill="#333"/><text x="40" y="124" fill="#fff" font-weight="bold">START</text>
+      <rect x="95" y="60" width="110" height="34" rx="6" fill="#e8edf8" stroke="#1f3a93"/><text x="150" y="81">Resume Parser</text>
+      <rect x="95" y="146" width="110" height="34" rx="6" fill="#e8edf8" stroke="#1f3a93"/><text x="150" y="167">Job Analyst</text>
+      <rect x="245" y="103" width="100" height="34" rx="6" fill="#eef7ee" stroke="#2e7d32"/><text x="295" y="124">Match Scorer</text>
+      <rect x="395" y="20" width="110" height="34" rx="6" fill="#fff6e5" stroke="#b26a00"/><text x="450" y="41">Gap Coach</text>
+      <rect x="395" y="103" width="110" height="34" rx="6" fill="#fff6e5" stroke="#b26a00"/><text x="450" y="124">Interview Coach</text>
+      <rect x="395" y="186" width="110" height="34" rx="6" fill="#fff6e5" stroke="#b26a00"/><text x="450" y="207">Letter Writer</text>
+      <rect x="395" y="270" width="110" height="34" rx="6" fill="#fdecec" stroke="#b71c1c"/><text x="450" y="291">Letter Critic</text>
+      <rect x="250" y="270" width="90" height="34" rx="6" fill="#eef7ee" stroke="#2e7d32"/><text x="295" y="291">Select best</text>
+      <circle cx="600" cy="120" r="22" fill="#333"/><text x="600" y="124" fill="#fff" font-weight="bold">END</text>
+    </g>
+    <g stroke="#333" fill="none" marker-end="url(#b)">
+      <path d="M62,110 L95,80"/><path d="M62,130 L95,160"/>
+      <path d="M205,77 L245,114"/><path d="M205,163 L245,127"/>
+      <path d="M345,112 L395,40"/><path d="M345,120 L395,120"/><path d="M345,128 L395,200"/>
+      <path d="M505,37 L580,110"/><path d="M505,120 L577,120"/>
+      <path d="M450,220 L450,270"/>
+      <path d="M505,287 C560,287 560,203 507,203"/>
+      <path d="M395,287 L340,287"/>
+      <path d="M295,270 C295,240 560,250 595,142"/>
+    </g>
+    <g font-size="10" fill="#333">
+      <text x="548" y="248">revise</text><text x="350" y="281">accept</text>
+      <text x="40" y="88" text-anchor="middle">parallel</text><text x="295" y="95" text-anchor="middle">parallel fan-out</text>
+    </g>
+  </svg>
+  <figcaption>Figure 4.2: LangGraph workflow with parallel branches and the critic–writer revision loop</figcaption>
+  </figure>
+  <p>The workflow steps are:</p>
+  <ol>
+    <li>The user provides a resume (PDF upload or pasted text) and a job description, then clicks <b>Run the agents</b>.</li>
+    <li>The input is validated: the button is disabled for empty input, and very short input produces a warning.</li>
+    <li>The Resume Parser and Job Analyst run in parallel and write <code>profile</code> and <code>job</code> to the state.</li>
+    <li>The Match Scorer runs the deterministic matcher, asks the LLM for an experience judgement and computes the hybrid score.</li>
+    <li>The Gap Coach, Interview Coach and Cover Letter Writer run in parallel.</li>
+    <li>The Letter Critic scores each draft. If the score is below 8/10 and revisions remain, the draft goes back to the writer with specific feedback.</li>
+    <li>Once accepted (or out of revisions), the highest-scoring draft is selected and all results are shown in the interface.</li>
+  </ol>
+
+  <h2 data-toc="4.3 Module Description">4.3 Module Description</h2>
+  <h3 data-toc="4.3.1 User Interface Module" data-level="3">4.3.1 User Interface Module (<code>app.py</code>)</h3>
+  <p>Accepts a PDF/TXT resume or pasted text and the job description, checks the Ollama connection, lets the user set the
+  maximum number of letter revisions, loads sample data, streams agent progress live and presents results in five tabs:
+  Fit report, Learning plan, Interview prep, Cover letter (with revision history) and Agent trace.</p>
+  <h3 data-toc="4.3.2 Document Processing Module" data-level="3">4.3.2 Document Processing Module (<code>documents.py</code>)</h3>
+  <p>Extracts text from uploaded PDFs with pypdf (or decodes text files) and normalises bullets and whitespace.</p>
+  <h3 data-toc="4.3.3 Agent Module" data-level="3">4.3.3 Agent Module (<code>agents.py</code>, <code>prompts.py</code>, <code>schemas.py</code>)</h3>
+  <p>Defines the seven agents. Each is a LangChain chain (<code>prompt | model.with_structured_output(Schema)</code>) wrapped in a
+  node function that reads from and writes to the graph state and appends a human-readable trace message.</p>
+  <h3 data-toc="4.3.4 Orchestration Module" data-level="3">4.3.4 Orchestration Module (<code>graph.py</code>)</h3>
+  <p>Builds and compiles the LangGraph <code>StateGraph</code>: nodes, parallel edges, the join, the conditional revise/accept
+  edge and the append-only reducers for drafts, critiques and the trace.</p>
+  <h3 data-toc="4.3.5 Scoring Module" data-level="3">4.3.5 Scoring Module (<code>scoring.py</code>)</h3>
+  <p>Normalises skills, expands compound requirements, matches skills using aliases, families, alternatives and resume-text
+  search, and computes the hybrid fit score and its band.</p>
+  <h3 data-toc="4.3.6 Guardrail Module" data-level="3">4.3.6 Guardrail Module (<code>guardrails.py</code>)</h3>
+  <p>Detects unsupported numbers, placeholder organisations and brackets, clichés and false claims about missing skills, and
+  cleans prompt artifacts from generated letters.</p>
+  <h3 data-toc="4.3.7 Model Execution Module" data-level="3">4.3.7 Model Execution Module (Ollama)</h3>
+  <p>Ollama serves Llama 3.2 locally. Each <code>ChatOllama</code> client sets a temperature, an output cap
+  (<code>num_predict = 1200</code>) and a request timeout. A fallback chain retries at a different temperature if
+  structured parsing fails.</p>
+
+  <h2 data-toc="4.4 Data Flow and Shared State">4.4 Data Flow and Shared State</h2>
+  <p>All agents share one typed state dictionary (<code>JobHunterState</code>). Table 4.1 lists the main fields and which agent
+  writes them.</p>
+  <table>
+    <tr><th>State field</th><th>Type</th><th>Written by</th></tr>
+    <tr><td><code>resume_text</code>, <code>job_text</code></td><td>str</td><td>User input</td></tr>
+    <tr><td><code>profile</code></td><td>CandidateProfile</td><td>Resume Parser</td></tr>
+    <tr><td><code>job</code></td><td>JobRequirements</td><td>Job Analyst</td></tr>
+    <tr><td><code>skills</code>, <code>judgement</code>, <code>score</code></td><td>SkillMatch, FitJudgement, int</td><td>Match Scorer</td></tr>
+    <tr><td><code>plan</code></td><td>LearningPlan</td><td>Gap Coach</td></tr>
+    <tr><td><code>interview</code></td><td>InterviewKit</td><td>Interview Coach</td></tr>
+    <tr><td><code>letter</code>, <code>revisions</code>, <code>drafts[]</code></td><td>str, int, list</td><td>Cover Letter Writer</td></tr>
+    <tr><td><code>critique</code>, <code>critiques[]</code></td><td>LetterReview</td><td>Letter Critic</td></tr>
+    <tr><td><code>best_draft</code></td><td>int</td><td>Select best</td></tr>
+    <tr><td><code>trace[]</code></td><td>list of messages</td><td>Every agent (append-only)</td></tr>
+  </table>
+  <p class="center">Table 4.1: Shared graph state</p>
+  <p>Data flow: <i>Resume + Job text → [Resume Parser ∥ Job Analyst] → Match Scorer → [Gap Coach ∥ Interview Coach ∥ (Writer ⇄
+  Critic)] → Select best → Streamlit display.</i></p>
+
+  <h2 data-toc="4.5 Hybrid Fit-Scoring Algorithm">4.5 Hybrid Fit-Scoring Algorithm</h2>
+  <p>A score produced entirely by an LLM is unstable and can be inflated by hallucination. Job Hunter therefore computes
+  skill coverage in code and lets the LLM contribute only a bounded qualitative component:</p>
+  <p class="formula">Fit = 0.55 × C<sub>required</sub> + 0.15 × C<sub>preferred</sub> + 0.30 × E<sub>LLM</sub></p>
+  <p>where C<sub>required</sub> and C<sub>preferred</sub> are the percentages of must-have and nice-to-have skills matched,
+  and E<sub>LLM</sub> ∈ [0, 100] is the model’s experience-fit judgement (clamped, and rescaled if the model answers on a
+  0–10 scale). Scores of 80 or more are a <i>Strong match</i>, 60–79 a <i>Good match</i>, 40–59 a <i>Stretch role</i> and below
+  40 a <i>Weak match</i>. A requirement counts as matched by the following steps:</p>
+  <ol>
+    <li><b>Expansion:</b> “RAG and vector databases” becomes two requirements; items such as “1+ years of experience” and generic
+    disciplines (“Software Engineering”) are removed, since experience is judged separately.</li>
+    <li><b>Normalisation:</b> lower-casing, removing filler words (“strong”, “experience with”) and mapping aliases
+    (k8s → kubernetes, postgres → postgresql, RAG → retrieval augmented generation).</li>
+    <li><b>Alternatives:</b> “LangChain or LangGraph” matches if any option matches.</li>
+    <li><b>Skill families:</b> a category is satisfied by any member, e.g. FAISS/Pinecone/Chroma count as a vector database.</li>
+    <li><b>Fuzzy and resume-text fallback:</b> whole-word containment, a similarity ratio of 0.88 or more, or a whole-word
+    search of the raw resume (in case the extractor missed a skill).</li>
+  </ol>
+
+  <h2 data-toc="4.6 Guardrails and Self-Correction">4.6 Guardrails and Self-Correction</h2>
+  <p>The Letter Critic combines an LLM rubric with code-based checks (Table 4.2). The model answers five true/false
+  questions and the score is computed as 2 points per passed check. Checks that can be done reliably in code override the
+  model’s answer.</p>
+  <table>
+    <tr><th>Check</th><th>How it is evaluated</th><th>Effect when failed</th></tr>
+    <tr><td>Specific opening</td><td>LLM rubric</td><td>−2; feedback names the company context to use</td></tr>
+    <tr><td>Cites real achievements</td><td>LLM rubric</td><td>−2; feedback asks for two quantified achievements</td></tr>
+    <tr><td>Avoids clichés</td><td>Code: phrase list (thrilled, passionate, innovative…)</td><td>−2; exact phrases quoted</td></tr>
+    <tr><td>Honest about gaps</td><td>Code: missing skill mentioned without learning language</td><td>−2; offending sentence quoted</td></tr>
+    <tr><td>Strong closing</td><td>LLM rubric</td><td>−2; asks for a direct call to action</td></tr>
+    <tr><td>Fact-check</td><td>Code: every number must appear in resume/JD; no “XYZ Corp” or [brackets]</td><td>Score capped at 4/10</td></tr>
+    <tr><td>Length</td><td>Code: 150–330 words</td><td>Score capped at 6/10</td></tr>
+  </table>
+  <p class="center">Table 4.2: Letter Critic checks</p>
+  <p>Because a revision can be worse than its predecessor, the system keeps every draft and selects the one with the highest
+  score, breaking ties in favour of fewer fact-check flags and then the later draft.</p>
+</section>
+
+<!-- ======================= CHAPTER 5 -->
+<section class="page">
+  <h1 class="chapter-no">Chapter 5</h1>
+  <h1 class="chapter" data-toc="5. Implementation">Implementation</h1>
+
+  <h2 data-toc="5.1 Development Environment">5.1 Development Environment</h2>
+  <p>The project was developed on an Apple M1 MacBook (8 GB RAM, macOS) using Python 3.11 in a virtual environment, with
+  Ollama 0.40 serving Llama 3.2 3B. The code is organised as a Python package (<code>job_hunter/</code>) with a Streamlit
+  front end (<code>app.py</code>), a command-line runner (<code>cli.py</code>), sample data (<code>samples/</code>) and a pytest
+  suite (<code>tests/</code>). The project is version-controlled with Git.</p>
+  <pre>job-hunter-agent/
+├── app.py              Streamlit UI with live agent pipeline
+├── cli.py              terminal runner
+├── job_hunter/
+│   ├── agents.py       the seven agents (LangChain chains → graph nodes)
+│   ├── graph.py        LangGraph StateGraph wiring
+│   ├── prompts.py      ChatPromptTemplates
+│   ├── schemas.py      Pydantic structured-output contracts
+│   ├── scoring.py      skill matcher + hybrid score
+│   ├── guardrails.py   hallucination / cliché / honesty checks
+│   ├── documents.py    PDF and text extraction
+│   └── config.py       model name, temperatures, limits, weights
+├── samples/            fictional resume and two job descriptions
+├── tests/              20 automated tests (no Ollama needed)
+└── report/             screenshot capture and verification scripts</pre>
+
+  <h2 data-toc="5.2 Implementation Methodology">5.2 Implementation Methodology</h2>
+  <p><b>Stage 1: Environment setup.</b> Installed Ollama, pulled <code>llama3.2</code>, created a Python 3.11 virtual environment
+  and installed LangChain, LangGraph, langchain-ollama, Streamlit, Plotly, pypdf and pytest.</p>
+  <p><b>Stage 2: Schema design.</b> Defined Pydantic models for every agent output (<code>CandidateProfile</code>,
+  <code>JobRequirements</code>, <code>FitJudgement</code>, <code>LearningPlan</code>, <code>InterviewKit</code>,
+  <code>LetterCritique</code>), using field descriptions as instructions to the model.</p>
+  <p><b>Stage 3: Agents.</b> Wrote prompt templates and built each agent as an LCEL chain with structured output.</p>
+  <p><b>Stage 4: Orchestration.</b> Wired the agents into a LangGraph <code>StateGraph</code> with parallel branches, a join and
+  a conditional revision loop.</p>
+  <p><b>Stage 5: Evaluation and hardening.</b> Ran the pipeline on sample data and fixed each observed failure with a targeted
+  mechanism. Table 5.1 summarises what was observed and how it was addressed. This iterative process was the most important
+  part of the project.</p>
+  <table>
+    <tr><th style="width:42%">Observed failure (Llama 3.2 3B)</th><th>Fix implemented</th></tr>
+    <tr><td>Letter invented “XYZ Corporation” and a “25% increase in engagement”</td><td>Numeric/placeholder fact-check guardrail; employer list and exact achievements passed to the writer</td></tr>
+    <tr><td>“RAG and vector databases” reported as missing although the resume has RAG and FAISS</td><td>Requirement expansion, skill families, acronym aliases, resume-text fallback</td></tr>
+    <tr><td>“1+ years of experience” treated as a skill; judge said the candidate “lacks experience”</td><td>Experience items removed from skills; years compared in code and passed to the judge</td></tr>
+    <tr><td>Learning plan estimated about 510 days</td><td>Prompt bounds and clamping each item to 1–21 days</td></tr>
+    <tr><td>Critic gave 6/10 to every draft</td><td>Rubric of five true/false checks, score computed in code</td></tr>
+    <tr><td>One generation looped for more than 13,000 tokens and hung the run</td><td>Output cap (<code>num_predict</code>), request timeout, fallback retry at another temperature</td></tr>
+    <tr><td>Job title extracted as “Job Description Analysis”</td><td>Fallback to the posting’s header line</td></tr>
+    <tr><td>Experience fit answered on a 0–10 scale</td><td>Automatic rescaling to 0–100</td></tr>
+    <tr><td>Revision made the letter worse</td><td>Keep all drafts and select the best</td></tr>
+  </table>
+  <p class="center">Table 5.1: Failures found during development and the corresponding fixes</p>
+  <p><b>Stage 6: User interface.</b> Built the Streamlit app with live streaming of graph events (<code>stream_mode=["tasks",
+  "updates"]</code>) to show which agents are running.</p>
+  <p><b>Stage 7: Testing.</b> Wrote unit tests for scoring and guardrails, graph tests with a scripted fake model, and system
+  checks using Streamlit’s <code>AppTest</code>.</p>
+
+  <h2 data-toc="5.3 Key Source Code">5.3 Key Source Code</h2>
+  <h3 data-toc="5.3.1 Structured-Output Schema" data-level="3">5.3.1 Structured-Output Schema</h3>
+  <pre>class JobRequirements(BaseModel):
+    title: str = Field(description="The exact job title as written in the posting")
+    company: str = Field(description="Hiring company name, or 'the company' if not stated")
+    seniority: str = Field(description="One of: intern, junior, mid, senior, lead")
+    required_skills: list[str] = Field(description="Must-have technical skills as short names ...")
+    preferred_skills: list[str] = Field(default_factory=list, description="Nice-to-have skills")
+    responsibilities: list[str] = Field(default_factory=list)
+    min_years_experience: float = Field(default=0)</pre>
+  <h3 data-toc="5.3.2 Building Agents with LangChain" data-level="3">5.3.2 Building Agents with LangChain</h3>
+  <pre>def default_llm_factory(temperature):
+    return ChatOllama(model=config.MODEL_NAME, temperature=temperature,
+                      num_predict=config.MAX_OUTPUT_TOKENS,          # stop runaway generations
+                      client_kwargs={"timeout": config.REQUEST_TIMEOUT_S})
+
+def structured(prompt, llm, schema):
+    primary = prompt | llm.with_structured_output(schema)
+    # retry once at a different temperature if parsing/validation fails
+    return primary.with_fallbacks([prompt | retry.with_structured_output(schema)])
+
+self.resume_chain = structured(prompts.RESUME_PARSER, extract, CandidateProfile)
+self.job_chain    = structured(prompts.JOB_ANALYST, extract, JobRequirements)
+self.letter_chain = prompts.LETTER_WRITER | write | StrOutputParser()</pre>
+  <h3 data-toc="5.3.3 LangGraph Orchestration" data-level="3">5.3.3 LangGraph Orchestration</h3>
+  <pre>class JobHunterState(TypedDict, total=False):
+    resume_text: str
+    job_text: str
+    profile: Any
+    ...
+    drafts: Annotated[list, operator.add]      # append-only: parallel-safe
+    critiques: Annotated[list, operator.add]
+    trace: Annotated[list, operator.add]
+
+g = StateGraph(JobHunterState)
+g.add_edge(START, "parse_resume")
+g.add_edge(START, "analyze_job")                         # parallel
+g.add_edge(["parse_resume", "analyze_job"], "match")     # join
+for node in ("gap_coach", "interview_coach", "write_letter"):
+    g.add_edge("match", node)                            # parallel fan-out
+g.add_edge("write_letter", "critique_letter")
+g.add_conditional_edges("critique_letter", should_revise,
+                        {"revise": "write_letter", "accept": "select_best"})
+
+def should_revise(state):
+    if state["critique"].score >= 8 or state["revisions"] > config.MAX_LETTER_REVISIONS:
+        return "accept"
+    return "revise"</pre>
+  <h3 data-toc="5.3.4 Skill Matching and Hybrid Score" data-level="3">5.3.4 Skill Matching and Hybrid Score</h3>
+  <pre>def skill_in(skill, candidate_skills, resume_text=""):
+    terms = _terms(skill)              # alternatives + aliases + family members
+    have = [normalize(c) for c in candidate_skills]
+    if any(_similar(t, c) for t in terms for c in have):
+        return True
+    text = resume_text.lower()         # fallback: search the raw resume
+    return any(re.search(rf"(?&lt;![a-z0-9]){re.escape(t)}(?![a-z0-9])", text) for t in terms)
+
+def fit_score(match, experience_fit):
+    experience_fit = max(0, min(100, experience_fit))
+    return round(0.55 * match.required_coverage * 100
+                 + 0.15 * match.preferred_coverage * 100
+                 + 0.30 * experience_fit)</pre>
+  <h3 data-toc="5.3.5 Hallucination Guardrail" data-level="3">5.3.5 Hallucination Guardrail</h3>
+  <pre>def unsupported_claims(letter, *sources):
+    known = set().union(*(_numbers(s) for s in sources))
+    issues = []
+    for m in NUMBER.finditer(letter):
+        if m.group(1).replace(",", "") not in known:
+            issues.append(f"The figure '{m.group(0)}' does not appear in the resume ...")
+    for m in PLACEHOLDER_ORG.finditer(letter):          # XYZ, ABC, Acme ...
+        issues.append(f"'{m.group(0)}' is an invented placeholder organisation ...")
+    return issues</pre>
+  <h3 data-toc="5.3.6 Live Streaming in the User Interface" data-level="3">5.3.6 Live Streaming in the User Interface</h3>
+  <pre>for mode, chunk in graph.stream(state, stream_mode=["tasks", "updates"]):
+    if mode == "tasks" and "input" in chunk:
+        status[chunk["name"]] = "running"          # agent started
+    elif mode == "updates":
+        for node, delta in chunk.items():
+            status[node] = "done"                  # agent finished
+            merge(state, delta)
+    render_pipeline(pipeline_slot, status)</pre>
+
+  <h2 data-toc="5.4 Execution Procedure">5.4 Execution Procedure</h2>
+  <p><b>Step 1: Install Ollama</b> from ollama.com (or <code>brew install ollama</code> on macOS) and start it.</p>
+  <p><b>Step 2: Download the model:</b></p>
+  <pre>ollama pull llama3.2</pre>
+  <p><b>Step 3: Create a virtual environment and install dependencies</b> in the project folder:</p>
+  <pre>python -m venv .venv
+source .venv/bin/activate          # Windows: .venv\Scripts\activate
+pip install -r requirements.txt</pre>
+  <p><b>Step 4: Run the tests</b> (optional; they do not need Ollama):</p>
+  <pre>pytest -q</pre>
+  <p><b>Step 5: Start the web application:</b></p>
+  <pre>streamlit run app.py</pre>
+  <p><b>Step 6:</b> Open the URL shown in the terminal (http://localhost:8501). The sidebar confirms the Ollama connection.</p>
+  <p><b>Step 7:</b> Upload a resume PDF (or paste text) and paste a job description, or click <b>Load sample resume + job</b>.</p>
+  <p><b>Step 8:</b> Click <b>Run the agents</b>, watch the pipeline and explore the result tabs. The cover letter can be downloaded.</p>
+  <p><b>Alternative (CLI):</b></p>
+  <pre>python cli.py samples/resume_ananya.txt samples/job_genai_engineer.txt</pre>
+</section>
+
+<!-- ======================= CHAPTER 6 -->
+<section class="page">
+  <h1 class="chapter-no">Chapter 6</h1>
+  <h1 class="chapter" data-toc="6. Testing and Results">Testing and Results</h1>
+
+  <h2 data-toc="6.1 Testing">6.1 Testing</h2>
+  <p>Testing was carried out at three levels:</p>
+  <ol>
+    <li><b>Unit tests</b> for the deterministic components: normalisation, requirement expansion, alternatives, skill families,
+    resume-text fallback, false-positive prevention, score weights, and each guardrail.</li>
+    <li><b>Graph tests</b> that run the complete LangGraph workflow with a scripted fake chat model. They verify the parallel
+    branches, the revision loop and its limit, best-draft selection, and that code checks override a lenient critic. Because
+    no real model is needed, they run in under one second.</li>
+    <li><b>System tests</b> of the running application with the real Llama 3.2 model, plus headless UI checks using Streamlit’s
+    <code>AppTest</code> and a PDF-upload check.</li>
+  </ol>
+  <p>All automated checks are reproducible with <code>pytest -q</code> and <code>python report/verify.py</code>.</p>
+
+  <h2 data-toc="6.2 Test Cases">6.2 Test Cases</h2>
+  <table>
+    <tr><th style="width:8%">Test Case</th><th style="width:30%">Input or Condition</th><th>Expected Result</th><th style="width:16%">Status</th></tr>
+    <tr><td>TC01</td><td>Sample resume + “GenAI Engineer” posting (real model)</td><td>All seven agents complete; fit report, plan, questions and letter displayed</td><td class="pass">Passed</td></tr>
+    <tr><td>TC02</td><td>Sample resume + “Senior Data Scientist” posting (5+ years, deep learning, Spark)</td><td>Lower score than TC01, with missing skills listed</td><td class="pass">Passed</td></tr>
+    <tr><td>TC03</td><td>Empty resume or job description</td><td>“Run the agents” button disabled</td><td class="pass">Passed</td></tr>
+    <tr><td>TC04</td><td>Very short input (“Python developer”)</td><td>Warning: input too short; agents not run</td><td class="pass">Passed</td></tr>
+    <tr><td>TC05</td><td>Resume uploaded as a PDF</td><td>Text extracted correctly (name, skills, figures)</td><td class="pass">Passed</td></tr>
+    <tr><td>TC06</td><td>Ollama not running</td><td>Sidebar error with instructions; run disabled</td><td class="pass">Passed</td></tr>
+    <tr><td>TC07</td><td>Letter containing an invented figure (“25%”) and “XYZ Corporation”</td><td>Guardrail flags both; score capped at 4/10; draft sent back</td><td class="pass">Passed</td></tr>
+    <tr><td>TC08</td><td>Letter with clichés and a false Kubernetes claim, approved by the critic</td><td>Code checks override the critic; feedback quotes the problems</td><td class="pass">Passed</td></tr>
+    <tr><td>TC09</td><td>Critic rejects every draft</td><td>Loop stops after 2 revisions (3 drafts); best draft kept</td><td class="pass">Passed</td></tr>
+    <tr><td>TC10</td><td>Compound, alternative and synonym requirements (12 hand-labelled)</td><td>Correct matched/missing classification</td><td class="pass">Passed (12/12)</td></tr>
+    <tr><td>TC11</td><td>Model returns a generic title or a 0–10 score</td><td>Title recovered from posting; score rescaled to 0–100</td><td class="pass">Passed</td></tr>
+    <tr><td>TC12</td><td>Runaway generation (observed: 13,000+ tokens)</td><td>Output capped; fallback retry; run completes</td><td class="pass">Passed</td></tr>
+    <tr><td>TC13</td><td>Automated test suite (<code>pytest -q</code>)</td><td>All tests pass</td><td class="pass">Passed (20/20)</td></tr>
+  </table>
+  <p class="center">Table 6.1: Test cases and results</p>
+
+  <h2 data-toc="6.3 Results and Discussion">6.3 Results and Discussion</h2>
+  <h3 data-toc="6.3.1 Application Walkthrough" data-level="3">6.3.1 Application Walkthrough</h3>
+  <figure><img src="img/01_home_empty.png"><figcaption>Figure 6.1: Home page with Ollama connection status and inputs</figcaption></figure>
+  <figure><img src="img/02_inputs_loaded.png"><figcaption>Figure 6.2: Sample resume and job description loaded</figcaption></figure>
+  <figure><img src="img/03_pipeline_running.png"><figcaption>Figure 6.3: Live agent pipeline. Three agents have finished (✓) and three are running in parallel (amber).</figcaption></figure>
+  <figure><img src="img/04_fit_report.png"><figcaption>Figure 6.4: Fit report: hybrid score gauge, matched (green) and missing (red) skills, strengths and concerns</figcaption></figure>
+  <figure><img src="img/05_learning_plan.png"><figcaption>Figure 6.5: Learning plan generated by the Gap Coach</figcaption></figure>
+  <figure><img src="img/06_interview_prep.png"><figcaption>Figure 6.6: Interview preparation with technical, behavioural and gap-probe questions</figcaption></figure>
+  <figure><img class="tall" src="img/08_revision_history.png"><figcaption>Figure 6.7: Final cover letter and revision history with rubric checks and fact-check status</figcaption></figure>
+  <figure><img src="img/09_agent_trace.png"><figcaption>Figure 6.8: Agent trace with timings and extracted structured data</figcaption></figure>
+  <figure><img src="img/ds_04_fit_report.png"><figcaption>Figure 6.9: Fit report for the Senior Data Scientist posting (TC02)</figcaption></figure>
+
+  <h3 data-toc="6.3.2 Quantitative Evaluation" data-level="3">6.3.2 Quantitative Evaluation</h3>
+  <p><b>Skill matching.</b> Twelve must-have requirements were copied verbatim from the two sample postings and labelled by hand
+  as present or absent in the sample resume. A naive exact keyword matcher, as used by simple ATS filters, was compared with
+  the hybrid matcher (Table 6.2).</p>
+  <!--MATCHER_TABLE-->
+  <p>The naive matcher failed on every requirement phrased as an alternative (“LangChain or LangGraph”), a compound
+  (“RAG and vector databases”) or with a qualifier (“Strong Python”). The hybrid matcher classified all twelve correctly,
+  including the absent skills. This sample is small and was built from the project’s own data, so the result shows the
+  benefit of each matching rule rather than general accuracy.</p>
+  <!--RUN_TABLE-->
+  <p><b>Effect of the guardrails.</b> During development the unguarded writer produced cover letters with invented figures
+  (“25% increase in user engagement”, “reduced response times by 30%”) and a placeholder employer (“XYZ Corporation”). With
+  the guardrail enabled, every such draft was flagged, capped at 4/10 and returned to the writer with the problem quoted.
+  The final selected letter contained only figures that appear in the resume.</p>
+  <p><b>Discussion.</b> The results show that a small local model can drive a useful multi-agent application when its
+  output is constrained by schemas and checked by code. The deterministic layer makes the most important outputs (which
+  skills match, the score, and whether the letter is truthful) reproducible and explainable. The LLM contributes what it does
+  well: reading unstructured text, judging experience and writing. Parallel execution keeps the total time to about two to
+  three minutes on a laptop. Ollama processes requests largely sequentially on 8 GB of RAM, so the gain from parallelism is
+  modest on this hardware but grows on machines that can serve concurrent requests.</p>
+
+  <h2 data-toc="6.4 Limitations">6.4 Limitations</h2>
+  <ol>
+    <li><b>Small-model writing quality:</b> Llama 3.2 3B writes serviceable but plain letters, and its revisions do not
+    always improve on the first draft. The critic’s rubric answers are noisy, which is why key checks are done in code.</li>
+    <li><b>Occasional contradictions:</b> the LLM’s strengths and concerns sometimes contradict the deterministic skill
+    lists (e.g. naming a matched skill as a concern).</li>
+    <li><b>Partial fact-checking:</b> the guardrail verifies numbers, placeholders and gap claims, but not every qualitative statement.</li>
+    <li><b>Extraction variance:</b> the Job Analyst can occasionally miss or merge a requirement, which changes the score.</li>
+    <li><b>Hand-crafted skill knowledge:</b> aliases and skill families are a curated list and will not cover every domain.</li>
+    <li><b>Speed:</b> a full analysis takes about two to three minutes on an 8 GB laptop.</li>
+    <li><b>Limited evaluation:</b> the quantitative evaluation uses a small, self-labelled sample; a larger benchmark of real
+    resume–job pairs with recruiter labels is needed.</li>
+    <li><b>English text only:</b> scanned (image) PDFs and other languages are not supported.</li>
+  </ol>
+</section>
+
+<!-- ======================= CHAPTER 7 -->
+<section class="page">
+  <h1 class="chapter-no">Chapter 7</h1>
+  <h1 class="chapter" data-toc="7. Conclusion and Future Work">Conclusion and Future Work</h1>
+
+  <h2 data-toc="7.1 Conclusion">7.1 Conclusion</h2>
+  <p>The project “Job Hunter: A Multi-Agent Career Copilot Using LangChain, LangGraph and Ollama” shows how agentic
+  generative AI can be applied to a practical, everyday problem. Seven specialised agents, built as LangChain chains with
+  Pydantic structured output and orchestrated by a LangGraph state graph, analyse a resume against a job posting, compute an
+  explainable fit score, plan how to close skill gaps, prepare the candidate for interviews and write a cover letter that is
+  reviewed and revised automatically.</p>
+  <p>A central lesson of the project is that reliability comes from <i>system design</i>, not from the model alone. Every
+  significant failure observed with a small local model was addressed with a specific mechanism: deterministic matching and
+  scoring, a rubric-based critic, a hallucination guardrail, output caps with fallbacks, and best-draft selection. The system
+  runs fully offline on a student laptop, keeps personal data private, passed all 20 automated tests and all 13 test cases,
+  and outperformed naive keyword matching on the evaluation sample.</p>
+  <p>Through this project I gained practical experience with LangChain, LangGraph, local LLM deployment with Ollama, prompt
+  and schema design, LLM-as-judge evaluation, guardrails, and testing non-deterministic AI systems.</p>
+
+  <h2 data-toc="7.2 Future Enhancements">7.2 Future Enhancements</h2>
+  <ol>
+    <li><b>Retrieval-augmented skill knowledge:</b> replace the hand-written alias and family lists with embedding-based
+    similarity over a skills taxonomy such as ESCO or O*NET.</li>
+    <li><b>Tool-using agents:</b> let the Gap Coach search for real courses and documentation, and let the writer fetch the
+    company’s website for a more specific opening.</li>
+    <li><b>Model routing:</b> use a small fast model for extraction and a larger model for writing, chosen per agent.</li>
+    <li><b>Human-in-the-loop:</b> use LangGraph checkpoints and interrupts so the user can edit the extracted skills or approve
+    the letter before revision.</li>
+    <li><b>Resume tailoring:</b> add an agent that rewrites resume bullet points for each posting, under the same factual guardrails.</li>
+    <li><b>Batch mode:</b> rank many job postings for one resume to find the best-fitting roles.</li>
+    <li><b>Larger evaluation:</b> build a labelled benchmark and measure matcher accuracy, score correlation with recruiter
+    judgements, and hallucination rates across models.</li>
+    <li><b>Observability:</b> integrate LangSmith tracing to monitor agent latency, token usage and failures.</li>
+  </ol>
+</section>
+
+<section class="page">
+  <h1 class="chapter" data-toc="References">References</h1>
+  <p>[1] LangChain, “LangChain Documentation.” [Online]. Available: https://docs.langchain.com/</p>
+  <p>[2] LangChain, “LangGraph Documentation.” [Online]. Available: https://langchain-ai.github.io/langgraph/</p>
+  <p>[3] LangChain, “ChatOllama Integration Documentation.” [Online]. Available: https://python.langchain.com/docs/integrations/chat/ollama/</p>
+  <p>[4] Ollama, “Ollama Documentation.” [Online]. Available: https://docs.ollama.com/</p>
+  <p>[5] Meta, “Llama Models.” [Online]. Available: https://www.llama.com/</p>
+  <p>[6] A. Grattafiori et al., “The Llama 3 Herd of Models,” arXiv preprint arXiv:2407.21783, 2024.</p>
+  <p>[7] S. Yao et al., “ReAct: Synergizing Reasoning and Acting in Language Models,” in Proc. ICLR, 2023.</p>
+  <p>[8] N. Shinn et al., “Reflexion: Language Agents with Verbal Reinforcement Learning,” in Proc. NeurIPS, 2023.</p>
+  <p>[9] A. Madaan et al., “Self-Refine: Iterative Refinement with Self-Feedback,” in Proc. NeurIPS, 2023.</p>
+  <p>[10] Q. Wu et al., “AutoGen: Enabling Next-Gen LLM Applications via Multi-Agent Conversation,” arXiv preprint arXiv:2308.08155, 2023.</p>
+  <p>[11] L. Zheng et al., “Judging LLM-as-a-Judge with MT-Bench and Chatbot Arena,” in Proc. NeurIPS Datasets and Benchmarks, 2023.</p>
+  <p>[12] Z. Ji et al., “Survey of Hallucination in Natural Language Generation,” ACM Computing Surveys, vol. 55, no. 12, 2023.</p>
+  <p>[13] Pydantic, “Pydantic Documentation.” [Online]. Available: https://docs.pydantic.dev/</p>
+  <p>[14] Streamlit, “Streamlit Documentation.” [Online]. Available: https://docs.streamlit.io/</p>
+  <p>[15] Python Software Foundation, “Python 3 Documentation.” [Online]. Available: https://docs.python.org/3/</p>
+</section>
+
+</div>
+</body>
+</html>

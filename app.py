@@ -159,9 +159,10 @@ if run:
 
 # --- Results --------------------------------------------------------------------------
 
-def pills(items, kind) -> str:
-    return "".join(f'<span class="pill {kind}">{html.escape(display_name(i))}</span>' for i in items) or \
-        '<span class="muted">none</span>'
+def pills(*groups: tuple[list[str], str]) -> str:
+    """Render (items, css-kind) groups as one row of skill chips."""
+    chips = "".join(f'<span class="pill {kind}">{html.escape(display_name(i))}</span>' for items, kind in groups for i in items)
+    return chips or '<span class="muted">none listed</span>'
 
 
 def gauge(score: int) -> go.Figure:
@@ -197,10 +198,10 @@ if result:
                         f"LLM experience fit {judgement.experience_fit}/100</span></div>", unsafe_allow_html=True)
         with s:
             st.markdown("**Must-have skills**")
-            st.markdown(pills(skills.matched_required, "ok") + pills(skills.missing_required, "miss"),
+            st.markdown(pills((skills.matched_required, "ok"), (skills.missing_required, "miss")),
                         unsafe_allow_html=True)
             st.markdown("**Nice-to-have skills**")
-            st.markdown(pills(skills.matched_preferred, "ok") + pills(skills.missing_preferred, "pref"),
+            st.markdown(pills((skills.matched_preferred, "ok"), (skills.missing_preferred, "pref")),
                         unsafe_allow_html=True)
             st.markdown(f"> {judgement.verdict}")
         c1, c2 = st.columns(2)

@@ -3,4 +3,5 @@ __pycache__/
 *.pyc
 .pytest_cache/
 .DS_Store
-report/build/
+*project report.pdf
+report/_render.html

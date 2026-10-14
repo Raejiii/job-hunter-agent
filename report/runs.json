@@ -1,0 +1,20 @@
+[
+  {
+    "job": "GenAI Engineer (Nimbus Labs)",
+    "score": 61,
+    "band": "Good match",
+    "must_haves": "6 of 8",
+    "missing": "Kubernetes, LLM Evaluation",
+    "letter": "Draft 2 of 3, 6/10, fact-check passed",
+    "time": "131 s"
+  },
+  {
+    "job": "Senior Data Scientist (Fernwood Health)",
+    "score": 31,
+    "band": "Weak match",
+    "must_haves": "5 of 11",
+    "missing": "Deep Learning, PyTorch, TensorFlow, Statistics, A/B Testing, Spark; below 5-year minimum",
+    "letter": "Generated (not shown)",
+    "time": "139 s"
+  }
+]
