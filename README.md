@@ -8,6 +8,10 @@ Job Hunter is a team of seven AI agents. Give it your resume and a job descripti
 4. **writes a tailored cover letter**, which a critic agent reviews and sends back for revision. A
    hallucination guardrail rejects any metric or employer that isn't in your resume.
 
+![Job Hunter demo](docs/demo.gif)
+
+<sub>15-second demo (the model's ~2-minute thinking time is fast-forwarded). Full-quality video: [docs/demo.mp4](docs/demo.mp4)</sub>
+
 It runs **100% locally** on [Ollama](https://ollama.com) (Llama 3.2 3B), so your resume never leaves
 your machine. It's built with **LangChain**, **LangGraph** and **Streamlit**.
 
