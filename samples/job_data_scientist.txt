@@ -1,0 +1,22 @@
+Senior Data Scientist - Fernwood Health (Remote, India)
+
+Fernwood Health uses machine learning to predict patient readmission risk for partner hospitals.
+
+Responsibilities
+- Lead end-to-end modelling projects from problem framing to production.
+- Build and validate classification and survival models on large clinical datasets.
+- Run A/B tests and communicate results to clinical stakeholders.
+- Mentor junior data scientists.
+
+Requirements
+- 5+ years of experience in data science
+- Python, pandas, scikit-learn
+- Deep learning with PyTorch or TensorFlow
+- Statistics and A/B testing
+- Spark or other big-data tooling
+- SQL
+
+Preferred
+- Experience with healthcare data (HIPAA, EHR)
+- MLflow
+- Published research

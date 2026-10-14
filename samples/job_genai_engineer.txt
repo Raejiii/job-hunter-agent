@@ -1,0 +1,31 @@
+GenAI Engineer - Nimbus Labs (Bengaluru, Hybrid)
+
+About Nimbus Labs
+Nimbus Labs builds AI copilots that help mid-size logistics companies answer questions over their
+operations data. Our assistants are used by 120+ warehouses across India.
+
+What you'll do
+- Design and ship LLM-powered features: retrieval-augmented generation (RAG), tool-calling agents, and evaluation pipelines.
+- Build and maintain Python microservices that serve model responses with low latency.
+- Own prompt design, guardrails, and offline evaluation of answer quality.
+- Work with product and data teams to turn customer workflows into agent workflows.
+- Deploy services on Kubernetes and monitor them in production.
+
+Must have
+- 1+ years of professional software engineering experience
+- Strong Python
+- LangChain or LangGraph
+- Retrieval-augmented generation (RAG) and vector databases
+- FastAPI or a similar Python web framework
+- Docker
+- Kubernetes
+- Experience evaluating LLM outputs (LLM evaluation)
+
+Nice to have
+- LangGraph multi-agent systems
+- AWS
+- PostgreSQL
+- Experience with open-source models (Llama, Mistral) via Ollama or vLLM
+- Observability tools such as LangSmith
+
+Compensation: 18-26 LPA + ESOPs

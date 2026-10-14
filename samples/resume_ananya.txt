@@ -1,0 +1,35 @@
+ANANYA RAO
+Bengaluru, India | ananya.rao@example.com | github.com/ananya-rao-dev
+
+SUMMARY
+M.Tech (Computer Science) student with 1.5 years of industry experience as a Python backend
+developer. Builds data-heavy APIs and has shipped two LLM-powered prototypes.
+
+EDUCATION
+M.Tech, Computer Science & Engineering - Example Institute of Technology, Bengaluru (2025 - 2027), CGPA 8.9
+B.E., Information Science - Example College of Engineering, Mysuru (2019 - 2023), CGPA 8.4
+
+EXPERIENCE
+Software Engineer - Brightline Analytics, Bengaluru (Jul 2023 - Dec 2024)
+- Built FastAPI microservices serving 2M+ requests/day for a retail analytics dashboard.
+- Cut report-generation latency by 63% by moving heavy aggregations into PostgreSQL materialized views.
+- Containerised 6 services with Docker and set up GitHub Actions CI, reducing release time from 2 days to 3 hours.
+- Mentored 2 interns on writing pytest test suites; raised coverage from 41% to 78%.
+
+PROJECTS
+Lecture Notes Q&A Bot (2025)
+- RAG chatbot over 300+ pages of course notes using LangChain, FAISS and sentence-transformers embeddings.
+- Added source citations per answer; evaluated on 50 hand-written questions with 86% answer accuracy.
+
+Resume Keyword Analyzer (2024)
+- Python + scikit-learn tool that ranks resumes against a job description using TF-IDF; used by a 40-member placement club.
+
+SKILLS
+Languages: Python, SQL, JavaScript
+Backend: FastAPI, Flask, REST APIs, PostgreSQL, Redis
+AI/ML: LangChain, scikit-learn, pandas, NumPy, prompt engineering, FAISS
+Tools: Docker, Git, GitHub Actions, Linux, pytest
+
+ACHIEVEMENTS
+- Winner, Smart India Hackathon 2023 (software edition) - built an offline crop-advice chatbot.
+- Speaker at college GenAI club: "Building your first RAG app".
